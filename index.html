@@ -1,0 +1,2852 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghattan Firstian Ilhaq — Portfolio</title>
+  <meta name="description"
+    content="Professional UI/UX Designer & Web Developer crafting Apple-styled, high-fidelity digital solutions with fluid parallax layers." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-pure: #ffffff;
+      --bg-apple: #f5f5f7;
+      --bg-card: rgba(255, 255, 255, 0.7);
+      --bg-card-hover: rgba(255, 255, 255, 0.9);
+      --accent-blue: #0066cc;
+      --accent-blue-hover: #0077ed;
+      --text-dark: #1d1d1f;
+      --text-muted: #86868b;
+      --border-light: rgba(0, 0, 0, 0.08);
+      --border-bright: rgba(0, 0, 0, 0.15);
+      --font-body: 'Inter', sans-serif;
+      --font-display: 'Outfit', sans-serif;
+      --grid-line-color: rgba(0, 0, 0, 0.02);
+      --shadow-apple: 0 8px 30px rgba(0, 0, 0, 0.04);
+      --shadow-apple-hover: 0 15px 45px rgba(0, 0, 0, 0.08);
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      height: auto;
+      scroll-behavior: auto;
+      overflow-x: hidden;
+    }
+
+    html.lenis {
+      height: auto;
+    }
+
+    .lenis.lenis-smooth {
+      scroll-behavior: auto;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-apple);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: rgba(0, 102, 204, 0.15);
+      color: var(--accent-blue);
+    }
+
+    /* Clean iOS-style Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-apple);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 99px;
+      border: 2px solid var(--bg-apple);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    /* ═══════════════════════════════════════════
+       DYNAMIC PARALLAX LAYERS (Depth System)
+       ═══════════════════════════════════════════ */
+    /* Layer 1: Clean architectural background grid */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-size: 100px 100px;
+      background-image:
+        linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Layer 2: Soft iOS-style lighting blobs */
+    .ambient-glow-light {
+      position: fixed;
+      width: 60vmax;
+      height: 60vmax;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 102, 204, 0.05) 0%, rgba(255, 255, 255, 0.2) 60%, transparent 80%);
+      pointer-events: none;
+      z-index: 2;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Layer 3: Massive background parallax text */
+    .parallax-bg-text {
+      position: absolute;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(8rem, 20vw, 22rem);
+      color: rgba(0, 0, 0, 0.02);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 1;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* ═══════════════════════════════════════════
+       TYPOGRAPHY SCALE
+       ═══════════════════════════════════════════ */
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-dark);
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7.5vw, 6.5rem);
+      line-height: 1.05;
+      font-weight: 800;
+    }
+
+    h1 span.light-text {
+      font-weight: 300;
+      color: var(--text-muted);
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+
+    .section-title span.kicker {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    p {
+      font-family: var(--font-body);
+      line-height: 1.6;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       HEADER BAR
+       ═══════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 48px;
+      /* Ultra-thin Apple style */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.75);
+      border-bottom: 1px solid var(--border-light);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: transform 0.4s ease;
+    }
+
+    .nav__logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .nav__logo span {
+      background: linear-gradient(135deg, var(--text-dark) 30%, var(--text-muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 450;
+      color: rgba(29, 29, 31, 0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav__links a:hover {
+      color: var(--accent-blue);
+    }
+
+    .nav__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 99px;
+      background: var(--text-dark);
+      color: #fff !important;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .nav__cta:hover {
+      background: var(--accent-blue);
+      transform: scale(1.02);
+    }
+
+    .nav__mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-dark);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .nav__mobile-menu {
+      display: none;
+      position: absolute;
+      top: 48px;
+      left: 0;
+      width: 100%;
+      background: var(--bg-pure);
+      border-bottom: 1px solid var(--border-light);
+      padding: 2rem;
+      z-index: 99;
+    }
+
+    .nav__mobile-menu.is-open {
+      display: block;
+    }
+
+    .nav__mobile-menu ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .nav__mobile-menu a {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .nav__links {
+        display: none;
+      }
+
+      .nav__mobile-toggle {
+        display: block;
+      }
+    }
+
+    /* ═══════════════════════════════════════════
+       PROGRESS NAV / APPLE DOT INDICATORS
+       ═══════════════════════════════════════════ */
+    .progress-nav {
+      position: fixed;
+      right: clamp(1.5rem, 3vw, 2.5rem);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: flex-end;
+    }
+
+    .progress-nav__item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      cursor: pointer;
+    }
+
+    .progress-nav__dot {
+      width: 5px;
+      height: 5px;
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 50%;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .progress-nav__item.is-active .progress-nav__dot {
+      height: 20px;
+      border-radius: 99px;
+      background: var(--accent-blue);
+    }
+
+    .progress-nav__label {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .progress-nav__item:hover .progress-nav__label,
+    .progress-nav__item.is-active .progress-nav__label {
+      opacity: 1;
+      color: var(--text-dark);
+    }
+
+    @media (max-width: 768px) {
+      .progress-nav {
+        display: none;
+      }
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO SECTION — COMPLEX APPLE PARALLAX CELLS
+       ═══════════════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 6rem 2rem 4rem;
+      background: linear-gradient(to bottom, #ffffff, #f5f5f7);
+    }
+
+    .hero__content {
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 4rem;
+      z-index: 10;
+    }
+
+    @media (max-width: 992px) {
+      .hero__content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+      }
+    }
+
+    .hero__text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 992px) {
+      .hero__text {
+        align-items: center;
+      }
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 99px;
+      background: var(--bg-pure);
+      border: 1px solid var(--border-light);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    }
+
+    .hero__badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #34c759;
+      /* Apple Active Green */
+    }
+
+    .hero__sub {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 1.8rem 0;
+      color: var(--text-muted);
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* iOS System Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.8rem;
+      border-radius: 99px;
+      background: var(--accent-blue);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-blue-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.8rem;
+      border-radius: 99px;
+      background: transparent;
+      color: var(--text-dark);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid var(--border-bright);
+      cursor: pointer;
+      transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(0, 0, 0, 0.02);
+      border-color: var(--text-dark);
+      transform: translateY(-1px);
+    }
+
+    /* ── MULTI-LAYER HERO PARALLAX WRAPS ── */
+    .hero__parallax-wrapper {
+      position: relative;
+      width: 100%;
+      height: 460px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media (max-width: 992px) {
+      .hero__parallax-wrapper {
+        height: 360px;
+        max-width: 380px;
+        margin: 0 auto;
+      }
+    }
+
+    /* Layer 1: Frame Back Layer */
+    .parallax-frame-depth {
+      position: absolute;
+      width: 80%;
+      height: 85%;
+      border-radius: 20px;
+      background: #fff;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-apple);
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .parallax-frame-depth img {
+      width: 108%;
+      height: 108%;
+      object-fit: cover;
+      transition: filter 0.3s;
+    }
+
+    /* Layer 2: Floating UI Panel (Slightly faster parallax) */
+    .parallax-floating-card-1 {
+      position: absolute;
+      bottom: 20px;
+      left: -20px;
+      width: 170px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* Layer 3: Secondary Floating UI Badge */
+    .parallax-floating-card-2 {
+      position: absolute;
+      top: 30px;
+      right: -15px;
+      background: rgba(0, 102, 204, 0.08);
+      border: 1px solid rgba(0, 102, 204, 0.15);
+      border-radius: 10px;
+      padding: 0.5rem 1rem;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .parallax-floating-card-2 span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      font-family: var(--font-body);
+    }
+
+    /* Scroll Indicator Badge */
+    .hero__scroll-down {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.7;
+      text-decoration: none;
+      z-index: 10;
+    }
+
+    .hero__scroll-down span {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .hero__scroll-down i {
+      font-size: 1rem;
+      color: var(--text-dark);
+      animation: bounceDown 1.8s infinite ease-in-out;
+    }
+
+    @keyframes bounceDown {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(6px);
+      }
+    }
+
+    /* ═══════════════════════════════════════════
+       HORIZONTAL TICKER / MARQUEE STRIPS
+       ═══════════════════════════════════════════ */
+    .marquee-container {
+      width: 100vw;
+      background: var(--bg-pure);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: 1.2rem 0;
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+      display: flex;
+    }
+
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 35s linear infinite;
+    }
+
+    .marquee-item {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2.5vw, 1.6rem);
+      font-weight: 600;
+      color: var(--text-dark);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .marquee-item span.muted {
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .marquee-item i {
+      color: var(--accent-blue);
+      font-size: 0.6em;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION GENERAL STYLING
+       ═══════════════════════════════════════════ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      position: relative;
+      z-index: 10;
+    }
+
+    .section {
+      position: relative;
+      padding: clamp(6rem, 12vh, 9rem) 0;
+      border-bottom: 1px solid var(--border-light);
+      background: var(--bg-pure);
+    }
+
+    /* Floating section coordinates to match Apple style */
+    .section-coord-label {
+      position: absolute;
+      top: 2rem;
+      left: 2.5rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+
+    /* ═══════════════════════════════════════════
+       ABOUT METLAND SCHOOL SECTION
+       ═══════════════════════════════════════════ */
+    .grid-about {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+    }
+
+    @media (max-width: 992px) {
+      .grid-about {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    /* Apple-style card designs */
+    .apple-card {
+      background: var(--bg-apple);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 2.6rem;
+      position: relative;
+      transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: var(--shadow-apple);
+    }
+
+    .apple-card:hover {
+      background: var(--bg-pure);
+      border-color: var(--border-bright);
+      box-shadow: var(--shadow-apple-hover);
+      transform: translateY(-4px);
+    }
+
+    /* Floating secondary stat widget on About block (Parallax) */
+    .about-floating-stat {
+      position: absolute;
+      top: -30px;
+      right: 30px;
+      background: var(--bg-pure);
+      border: 1px solid var(--border-light);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      padding: 0.8rem 1.2rem;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      pointer-events: none;
+    }
+
+    .about-floating-stat span.num {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent-blue);
+    }
+
+    .about-floating-stat span.txt {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--border-light);
+      padding-top: 2rem;
+    }
+
+    .stat-item span {
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      font-weight: 550;
+      letter-spacing: 0.02em;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-val {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    /* Skills layout */
+    .skill-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .skill-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+    }
+
+    .skill-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .skill-percent {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+    }
+
+    .skill-bar {
+      height: 4px;
+      /* Slightly thicker capsule */
+      background: rgba(0, 0, 0, 0.04);
+      width: 100%;
+      border-radius: 99px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      background: var(--text-dark);
+      border-radius: 99px;
+      width: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .tag-pill {
+      font-size: 0.68rem;
+      font-weight: 500;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--border-light);
+      border-radius: 99px;
+      color: var(--text-dark);
+      background: var(--bg-pure);
+      transition: all 0.2s;
+    }
+
+    .tag-pill:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      background: #fff;
+    }
+
+    /* ═══════════════════════════════════════════
+       SELECTED WORK / PROJECTS SECTION
+       ═══════════════════════════════════════════ */
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .projects-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+      }
+    }
+
+    .github-link-alt {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .github-link-alt:hover {
+      color: var(--accent-blue-hover);
+    }
+
+    /* Project Cards Grid */
+    .grid-projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 992px) {
+      .grid-projects {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .grid-projects {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .project-card {
+      background: var(--bg-apple);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: var(--shadow-apple);
+    }
+
+    .project-card:hover {
+      border-color: var(--border-bright);
+      box-shadow: var(--shadow-apple-hover);
+      transform: translateY(-5px);
+    }
+
+    .project-img-container {
+      width: 100%;
+      height: 230px;
+      overflow: hidden;
+      position: relative;
+      border-bottom: 1px solid var(--border-light);
+      background: #eaeaea;
+    }
+
+    .project-img-container img {
+      width: 112%;
+      height: 112%;
+      object-fit: cover;
+      position: absolute;
+      left: -6%;
+      top: -6%;
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .project-details {
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .project-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    /* Page 2 / Hidden works */
+    .project-card.is-hidden {
+      display: none;
+    }
+
+    .pagination-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 4rem;
+    }
+
+    .page-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--bg-pure);
+      border: 1px solid var(--border-bright);
+      color: var(--text-dark);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .page-btn.is-active {
+      background: var(--text-dark);
+      color: #fff;
+      border-color: var(--text-dark);
+    }
+
+    .page-btn:hover:not(.is-active) {
+      background: rgba(0, 0, 0, 0.02);
+      border-color: var(--text-dark);
+    }
+
+    .page-btn-next {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0 1.5rem;
+      height: 42px;
+      border-radius: 99px;
+      background: var(--bg-pure);
+      border: 1px solid var(--border-bright);
+      color: var(--text-dark);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .page-btn-next:hover {
+      background: rgba(0, 0, 0, 0.02);
+      border-color: var(--text-dark);
+    }
+
+    /* ═══════════════════════════════════════════
+       JOURNEY & TESTIMONIALS (EXPERIENCE)
+       ═══════════════════════════════════════════ */
+    .grid-experience {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    @media (max-width: 992px) {
+      .grid-experience {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+      }
+    }
+
+    .experience-timeline {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    /* Clean silver pipeline */
+    .experience-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 2px;
+      background: var(--border-light);
+    }
+
+    .timeline-node {
+      position: relative;
+      padding-bottom: 3rem;
+    }
+
+    .timeline-node:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-bullet {
+      position: absolute;
+      left: -2.35rem;
+      top: 0.4rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--bg-pure);
+      border: 2px solid var(--text-dark);
+      transition: all 0.3s;
+    }
+
+    .timeline-node:hover .timeline-bullet {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 8px rgba(0, 102, 204, 0.4);
+    }
+
+    .timeline-date {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    .timeline-heading {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.6rem;
+    }
+
+    /* Testimonials Column */
+    .reviews-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .review-card {
+      background: var(--bg-apple);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 2.2rem;
+      box-shadow: var(--shadow-apple);
+      transition: all 0.3s;
+    }
+
+    .review-card:hover {
+      background: var(--bg-pure);
+      border-color: var(--border-bright);
+      box-shadow: var(--shadow-apple-hover);
+    }
+
+    .review-stars {
+      color: #ff9500;
+      /* Apple Gold Star */
+      font-size: 0.75rem;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.1em;
+    }
+
+    .review-text {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.5;
+      font-weight: 400;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .review-user {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .review-user img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border-light);
+    }
+
+    .review-initials {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .user-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .user-title {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       MEMORY FRAGMENT CERTIFICATES
+       ═══════════════════════════════════════════ */
+    .fragment-container {
+      position: relative;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      height: 140vh;
+      min-height: 900px;
+      margin-top: 4rem;
+      margin-bottom: 4rem;
+      overflow: hidden;
+      /* Soft boundary fade out to prevent hard cuts at the top/bottom */
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    }
+
+    .fragment-container.no-mask {
+      -webkit-mask-image: none !important;
+      mask-image: none !important;
+      overflow: visible !important;
+    }
+
+    @media (max-width: 768px) {
+      .fragment-container {
+        height: 160vh;
+      }
+    }
+
+    .fragment-overlay {
+      position: fixed;
+      inset: 0;
+      background: transparent;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .fragment-overlay.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Info Panel */
+    .fragment-info-panel {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(60px);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      z-index: 105;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-light);
+      padding: 1.2rem 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .fragment-info-panel.is-active {
+      opacity: 1;
+      transform: translateX(-50%) translateY(30px);
+      pointer-events: auto;
+    }
+
+    .info-date {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .info-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .info-desc {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .fragment-wrapper {
+      position: absolute;
+      will-change: transform;
+    }
+
+    .fragment-card {
+      width: 320px;
+      height: 226px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06), 0 5px 15px rgba(0, 0, 0, 0.03);
+      border: 1px solid var(--border-light);
+      background: var(--bg-pure);
+      cursor: pointer;
+      will-change: transform;
+      position: relative;
+      transition: border-color 0.4s, filter 0.8s ease, opacity 0.8s ease;
+    }
+
+    .fragment-card.is-focus {
+      filter: blur(0px) !important;
+      opacity: 1 !important;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .fragment-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .fragment-card:hover {
+      border-color: var(--border-bright);
+    }
+
+    .fragment-card:hover:not(.is-focus) img {
+      transform: scale(1.05);
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER / CONTACT SECTION
+       ═══════════════════════════════════════════ */
+    .contact-footer {
+      padding: clamp(5rem, 10vh, 8rem) 0 3rem;
+      background: var(--bg-apple);
+      text-align: center;
+      border-top: 1px solid var(--border-light);
+      position: relative;
+    }
+
+    .contact-title {
+      font-size: clamp(2.5rem, 6.5vw, 5rem);
+      margin-bottom: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .contact-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.5;
+    }
+
+    .contact-email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      border-radius: 99px;
+      background: var(--accent-blue);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.2s, transform 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.2);
+    }
+
+    .contact-email-btn:hover {
+      background: var(--accent-blue-hover);
+      transform: translateY(-2px);
+    }
+
+    .footer-base {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text-muted);
+      font-size: 0.72rem;
+    }
+
+    .social-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .social-link-btn {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+
+    .social-link-btn:hover {
+      color: var(--accent-blue);
+    }
+
+    /* ═══════════════════════════════════════════
+       CLEAN APPLE CURSOR SYSTEM
+       ═══════════════════════════════════════════ */
+    .cursor-dot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 5px;
+      background: var(--accent-blue);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10001;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s, width 0.2s, height 0.2s, background 0.2s;
+    }
+
+    .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: width 0.25s, height 0.25s, border-color 0.25s, background 0.25s;
+    }
+
+    .cursor-label {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 10002;
+      font-family: var(--font-body);
+      font-size: 0.55rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      opacity: 0;
+      transform: translate(18px, -5px);
+      transition: opacity 0.2s;
+    }
+
+    /* Hover states */
+    .cursor-dot.is-hovering {
+      width: 8px;
+      height: 8px;
+      background: var(--text-dark);
+    }
+
+    .cursor-ring.is-hovering {
+      width: 40px;
+      height: 40px;
+      border-color: var(--accent-blue);
+      background: rgba(0, 102, 204, 0.04);
+    }
+
+    @media (pointer: coarse),
+    (prefers-reduced-motion: reduce) {
+
+      .cursor-dot,
+      .cursor-ring,
+      .cursor-label {
+        display: none !important;
+      }
+
+      body {
+        cursor: auto !important;
+      }
+
+      a,
+      button {
+        cursor: pointer !important;
+      }
+    }
+
+    body:not(.reduce-motion) {
+      cursor: none;
+    }
+
+    body:not(.reduce-motion) a,
+    body:not(.reduce-motion) button {
+      cursor: none;
+    }
+
+    .reduce-motion-toggle {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 100;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      border: 1px solid var(--border-light);
+      background: var(--bg-pure);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s;
+    }
+
+    .reduce-motion-toggle:hover {
+      border-color: var(--text-dark);
+      color: var(--text-dark);
+    }
+
+    /* Staggered entry classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    body.reduce-motion .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background Lines -->
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Ambient Light trail -->
+  <div class="ambient-glow-light" id="mouse-glow" aria-hidden="true"></div>
+
+  <!-- Dynamic mouse indicators -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <div class="cursor-label" aria-hidden="true">explore</div>
+
+  <!-- Switch Motion -->
+  <button class="reduce-motion-toggle" id="reduceMotionBtn" aria-label="Toggle reduced motion" title="Reduce motion">
+    <i class="bi bi-pause-circle"></i>
+  </button>
+
+  <!-- Dot progress bar -->
+  <nav class="progress-nav" aria-label="Section indicators">
+    <div class="progress-nav__item is-active" data-target="hero">
+      <span class="progress-nav__label">Home</span>
+      <div class="progress-nav__dot"></div>
+    </div>
+    <div class="progress-nav__item" data-target="about">
+      <span class="progress-nav__label">About</span>
+      <div class="progress-nav__dot"></div>
+    </div>
+    <div class="progress-nav__item" data-target="projects">
+      <span class="progress-nav__label">Work</span>
+      <div class="progress-nav__dot"></div>
+    </div>
+    <div class="progress-nav__item" data-target="experience">
+      <span class="progress-nav__label">Journey</span>
+      <div class="progress-nav__dot"></div>
+    </div>
+    <div class="progress-nav__item" data-target="certificates">
+      <span class="progress-nav__label">Credentials</span>
+      <div class="progress-nav__dot"></div>
+    </div>
+    <div class="progress-nav__item" data-target="contact">
+      <span class="progress-nav__label">Contact</span>
+      <div class="progress-nav__dot"></div>
+    </div>
+  </nav>
+
+  <!-- Navigation header -->
+  <nav class="nav" role="navigation" aria-label="Main navigation menu">
+    <a href="#hero" class="nav__logo">Ghattan<span>Firstian</span></a>
+
+    <!-- Desktop -->
+    <ul class="nav__links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact" class="nav__cta">Contact</a></li>
+    </ul>
+
+    <!-- Hamburger menu toggle -->
+    <button class="nav__mobile-toggle" id="menuBtn" aria-label="Toggle navigation menu">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Mobile menu -->
+    <div class="nav__mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO SECTION
+       ══════════════════════════════════════ -->
+  <section id="hero" class="hero">
+    <!-- Backmost Parallax Text Layer -->
+    <div class="parallax-bg-text" id="hero-bg-text" style="top: 15%;">CREATIVE</div>
+
+    <div class="container hero__content">
+      <div class="hero__text reveal">
+        <div class="hero__badge">
+          <span class="hero__badge-dot"></span>
+          <span class="label-mono" style="color:var(--text-dark); font-size:0.6rem; letter-spacing:0.02em;">OPEN TO
+            COLLAB</span>
+        </div>
+        <h1>Building<br><span class="light-text">digital interfaces</span><br>for the next era.</h1>
+        <p class="hero__sub">
+          Hello, I'm <strong>Ghattan Firstian.</strong> A UI/UX Designer & Web Developer crafting beautiful interfaces
+          and clean layouts with custom design languages.
+        </p>
+        <div class="hero__actions">
+          <a href="#projects" class="btn-primary">View Projects <i class="bi bi-arrow-right-short"></i></a>
+          <a href="CV ATS Ghattan Firstian Ilhaq (1).pdf" download class="btn-ghost">
+            <i class="bi bi-download"></i> Get Resume
+          </a>
+        </div>
+      </div>
+
+      <!-- Multiple Parallax Image Showcase -->
+      <div class="hero__parallax-wrapper reveal">
+        <!-- Layer 1: Main Image frame -->
+        <div class="parallax-frame-depth" id="hero-img-layered">
+          <img src="image/rysmirror.jpeg" alt="Ghattan Portfolio graphic">
+        </div>
+        <!-- Layer 2: Floating Stat Panel -->
+        <div class="parallax-floating-card-1" id="floating-widget-1">
+          <span
+            style="font-size:0.6rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); font-weight:600;">Latest
+            Project</span>
+          <span style="font-size:0.85rem; font-weight:700; color:var(--text-dark);">Metland School Website</span>
+          <span style="font-size:0.65rem; color:var(--accent-blue); font-weight:500;">Dynamic Portal 2026</span>
+        </div>
+        <!-- Layer 3: Floating badge -->
+        <div class="parallax-floating-card-2" id="floating-widget-2">
+          <span class="hero__badge-dot" style="background:var(--accent-blue)"></span>
+          <span>UI/UX First Place</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="hero__scroll-down">
+      <span>Scroll Down</span>
+      <i class="bi bi-arrow-down-short"></i>
+    </a>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       APPLE SCROLL MARQUEE 1
+       ══════════════════════════════════════ -->
+  <div class="marquee-container" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-item">UI/UX Design <i class="bi bi-asterisk"></i></div>
+      <div class="marquee-item"><span class="muted">Frontend Development</span> <i class="bi bi-asterisk"></i></div>
+      <div class="marquee-item">Laravel Integration <i class="bi bi-asterisk"></i></div>
+      <div class="marquee-item"><span class="muted">Clean Code Architecture</span> <i class="bi bi-asterisk"></i></div>
+      <div class="marquee-item">UI/UX Design <i class="bi bi-asterisk"></i></div>
+      <div class="marquee-item"><span class="muted">Frontend Development</span> <i class="bi bi-asterisk"></i></div>
+      <div class="marquee-item">Laravel Integration <i class="bi bi-asterisk"></i></div>
+      <div class="marquee-item"><span class="muted">Clean Code Architecture</span> <i class="bi bi-asterisk"></i></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ABOUT SECTION
+       ══════════════════════════════════════ -->
+  <section id="about" class="section">
+    <!-- Backmost Parallax Text Layer -->
+    <div class="parallax-bg-text" id="about-bg-text" style="top: 20%; left:20%;">ENGINEER</div>
+
+    <div class="container">
+      <div class="grid-about">
+
+        <!-- Profile block -->
+        <div class="apple-card reveal" style="position:relative;">
+          <!-- Floating Widget -->
+          <div class="about-floating-stat" id="about-stat-parallax">
+            <span class="num">02+</span>
+            <span class="txt">Years Code</span>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:1.2rem; margin-bottom:1.8rem;">
+            <img src="image/rysmirror.jpeg" alt="Ghattan Firstian"
+              style="width: 58px; height: 58px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-light);" />
+            <div>
+              <h2 style="font-size:1.6rem; font-weight:700;">About Me</h2>
+              <p style="font-size:0.75rem; font-weight:600; color:var(--accent-blue); margin-top:0.1rem;">METLAND SCHOOL
+                // XII PPLG 1</p>
+            </div>
+          </div>
+
+          <p style="margin-bottom:1.8rem;">
+            I am a student deeply passionate about user interface design and full-stack integration. I believe design is
+            not just how it looks, but how it works—bringing organic flow and mechanical precision into simple, robust
+            digital components.
+          </p>
+
+          <div class="stat-row">
+            <div class="stat-item">
+              <span class="stat-label">Location</span>
+              <span class="stat-val">Bogor, ID</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Role Focus</span>
+              <span class="stat-val">UI/UX & Web Dev</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Experience</span>
+              <span class="stat-val">2+ Years</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Status</span>
+              <span class="stat-val" style="color:var(--accent-blue)">Available</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tech Stack block -->
+        <div class="apple-card reveal">
+          <h2 style="font-size:1.6rem; margin-bottom:2.2rem;">Skills & Instruments</h2>
+
+          <div class="skill-list">
+            <!-- UI/UX -->
+            <div>
+              <div class="skill-meta">
+                <span class="skill-name">UI/UX Design</span>
+                <span class="skill-percent">90%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-width="90%"></div>
+              </div>
+            </div>
+            <!-- Frontend -->
+            <div>
+              <div class="skill-meta">
+                <span class="skill-name">Frontend (React, TW, CSS)</span>
+                <span class="skill-percent">85%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-width="85%"></div>
+              </div>
+            </div>
+            <!-- Backend -->
+            <div>
+              <div class="skill-meta">
+                <span class="skill-name">Backend (Laravel, PHP)</span>
+                <span class="skill-percent">90%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-width="90%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-tags">
+            <span class="tag-pill">Figma</span>
+            <span class="tag-pill">Laravel</span>
+            <span class="tag-pill">React</span>
+            <span class="tag-pill">Tailwind</span>
+            <span class="tag-pill">GitHub</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PROJECTS SECTION
+       ══════════════════════════════════════ -->
+  <section id="projects" class="section">
+    <!-- Backmost Parallax Text Layer -->
+    <div class="parallax-bg-text" id="projects-bg-text" style="top: 25%;">PORTFOLIO</div>
+
+    <div class="container">
+
+      <div class="projects-header reveal">
+        <div>
+          <h2 class="section-title"><span class="kicker">Case Studies</span>Selected Works</h2>
+          <p style="max-width:480px;">A collection of design layouts and backend architectures showing creative and
+            clean structures.</p>
+        </div>
+        <a href="https://github.com/ghattanilhaq-source" class="github-link-alt" target="_blank">
+          View GitHub Logs <i class="bi bi-arrow-right-short"></i>
+        </a>
+      </div>
+
+      <div class="grid-projects">
+
+        <!-- Project 1 -->
+        <a href="https://www.figma.com/design/5Cup9IXJtvchmZF5BgwQj5/IT-Fair-XIV" target="_blank"
+          class="project-card reveal">
+          <div class="project-img-container">
+            <img src="image/HealUp.png" alt="HealUp App mockups">
+          </div>
+          <div class="project-details">
+            <span class="project-tag">UI/UX · Figma</span>
+            <h3 class="project-title">HealUp Platform</h3>
+            <p class="project-desc">Health application UI design focusing on clean minimal cards, organic typography
+              layout, and user flows.</p>
+          </div>
+        </a>
+
+        <!-- Project 2 -->
+        <a href="https://github.com/sutsutan/lomba-web-ms.git" target="_blank" class="project-card reveal">
+          <div class="project-img-container">
+            <img src="image/LombaMS.png" alt="Metland School Portal screen">
+          </div>
+          <div class="project-details">
+            <span class="project-tag">Laravel · Fullstack</span>
+            <h3 class="project-title">Metland School Website</h3>
+            <p class="project-desc">A fully realized school platform integrated with responsive structures, database
+              controls, and modern user paths.</p>
+          </div>
+        </a>
+
+        <!-- Project 3 -->
+        <a href="#" class="project-card reveal">
+          <div class="project-img-container">
+            <img src="image/ITEC.png" alt="ITEC Application screen">
+          </div>
+          <div class="project-details">
+            <span class="project-tag">App Design · iOS</span>
+            <h3 class="project-title">ITEC Fitness</h3>
+            <p class="project-desc">UI design for an iOS fitness tracker featuring gamification overlays and engaging
+              user onboarding.</p>
+          </div>
+        </a>
+
+        <!-- Project 4 -->
+        <a href="#" class="project-card reveal">
+          <div class="project-img-container">
+            <img src="image/BellQ.png" alt="BellQ IoT dashboard">
+          </div>
+          <div class="project-details">
+            <span class="project-tag">Laravel · AJAX</span>
+            <h3 class="project-title">BellQ IoT Interface</h3>
+            <p class="project-desc">A comprehensive dashboard system blending hardware logic and clean web data
+              representation.</p>
+          </div>
+        </a>
+
+        <!-- Project 5 -->
+        <a href="#" class="project-card reveal">
+          <div class="project-img-container">
+            <img src="image/Infornation.png" alt="Infornation guidelines">
+          </div>
+          <div class="project-details">
+            <span class="project-tag">Branding · Identity</span>
+            <h3 class="project-title">Infornation Brand</h3>
+            <p class="project-desc">Complete branding visuals guideline focusing on cohesive minimalist layouts and
+              color balances.</p>
+          </div>
+        </a>
+
+        <!-- Project 6 -->
+        <a href="#" class="project-card reveal">
+          <div class="project-img-container">
+            <img src="image/MetThings.png" alt="MetThings dynamic blogging platform">
+          </div>
+          <div class="project-details">
+            <span class="project-tag">PHP · Fullstack</span>
+            <h3 class="project-title">MetThings Blog System</h3>
+            <p class="project-desc">Dynamic PHP-based blog platform with article management, categories, and backend
+              admin controls.</p>
+          </div>
+        </a>
+
+        <!-- Project 7 (Page 2 - Veloura) -->
+        <a href="#" class="project-card reveal is-hidden page-2-item">
+          <div class="project-img-container">
+            <img src="image/veloura.png" alt="Veloura interface design">
+          </div>
+          <div class="project-details">
+            <span class="project-tag">Branding · UI/UX</span>
+            <h3 class="project-title">Veloura Digital</h3>
+            <p class="project-desc">A premium layout emphasizing elegant typography and dark-mode immersive experiences.
+            </p>
+          </div>
+        </a>
+
+        <!-- Project 8 (Page 2 - ITFest) -->
+        <a href="#" class="project-card reveal is-hidden page-2-item">
+          <div class="project-img-container">
+            <img src="image/ITFest.png" alt="IT Fest screen mockups">
+          </div>
+          <div class="project-details">
+            <span class="project-tag">Web Design · Figma</span>
+            <h3 class="project-title">IT Fest Portal</h3>
+            <p class="project-desc">A creative event portal design for an IT fair emphasizing visual hierarchy.</p>
+          </div>
+        </a>
+
+        <!-- Project 9 (Page 2 - ITechnocup) -->
+        <a href="#" class="project-card reveal is-hidden page-2-item">
+          <div class="project-img-container">
+            <img src="image/itechnocup.png" alt="ITechnocup project">
+          </div>
+          <div class="project-details">
+            <span class="project-tag">Web Design · UI/UX</span>
+            <h3 class="project-title">ITechnocup</h3>
+            <p class="project-desc">Karya lomba perancangan antarmuka inovatif untuk ITechnocup.</p>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Pagination Interface (Looks like page navigation) -->
+      <div class="pagination-wrapper" id="paginationWrapper">
+        <button class="page-btn is-active" id="page1Btn">1</button>
+        <button class="page-btn" id="page2Btn">2</button>
+        <button class="page-btn-next" id="nextPageBtn">Next <i class="bi bi-arrow-right-short"></i></button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       APPLE SCROLL MARQUEE 2
+       ══════════════════════════════════════ -->
+  <div class="marquee-container" aria-hidden="true" style="background:var(--bg-apple); border-bottom:none;">
+    <div class="marquee-track" style="animation-direction: reverse;">
+      <div class="marquee-item">GAMIFIED INTERFACES <i class="bi bi-slash-lg"></i></div>
+      <div class="marquee-item"><span class="muted">HIGH FIDELITY MOCKUPS</span> <i class="bi bi-slash-lg"></i></div>
+      <div class="marquee-item">METLAND SCHOOL PROJECT <i class="bi bi-slash-lg"></i></div>
+      <div class="marquee-item"><span class="muted">MINIMALIST APPLE SCHEMES</span> <i class="bi bi-slash-lg"></i></div>
+      <div class="marquee-item">GAMIFIED INTERFACES <i class="bi bi-slash-lg"></i></div>
+      <div class="marquee-item"><span class="muted">HIGH FIDELITY MOCKUPS</span> <i class="bi bi-slash-lg"></i></div>
+      <div class="marquee-item">METLAND SCHOOL PROJECT <i class="bi bi-slash-lg"></i></div>
+      <div class="marquee-item"><span class="muted">MINIMALIST APPLE SCHEMES</span> <i class="bi bi-slash-lg"></i></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       JOURNEY & TESTIMONIALS SECTION
+       ══════════════════════════════════════ -->
+  <section id="experience" class="section">
+    <!-- Backmost Parallax Text Layer -->
+    <div class="parallax-bg-text" id="experience-bg-text" style="top: 25%; left:-10%;">AWARDS</div>
+
+    <div class="container">
+      <div class="grid-experience">
+
+        <!-- Timeline column -->
+        <div class="reveal">
+          <h2 class="section-title"><span class="kicker">Records</span>Journey & Awards</h2>
+
+          <div class="experience-timeline">
+
+            <div class="timeline-node">
+              <div class="timeline-bullet"></div>
+              <span class="timeline-date">April 2025</span>
+              <h4 class="timeline-heading">1st Place — UI/UX Competition</h4>
+              <p>Trilogi University, Jakarta. Delivered an end-to-end design solution recognized for its efficiency and
+                aesthetics.</p>
+            </div>
+
+            <div class="timeline-node">
+              <div class="timeline-bullet"></div>
+              <span class="timeline-date">June 2025</span>
+              <h4 class="timeline-heading">2nd Place — UI/UX Apps Prototype</h4>
+              <p>Jenderal Achmad Yani University. Crafted a scalable mobile app prototype.</p>
+            </div>
+
+            <div class="timeline-node">
+              <div class="timeline-bullet"></div>
+              <span class="timeline-date">March 2026</span>
+              <h4 class="timeline-heading">3rd Place — Web Dev Metland</h4>
+              <p>Designed and executed front-end UI through responsive backend configurations.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Testimonials block -->
+        <div class="reveal">
+          <h2 class="section-title"><span class="kicker">Testimonials</span>What People Say</h2>
+
+          <div class="reviews-container">
+
+            <!-- Review 1 -->
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">
+                "Ghattan built the website for my business very professionally. The design is stunning, responsive, and
+                completed on time. Highly satisfied!"
+              </p>
+              <div class="review-user">
+                <img src="image/Veria.jpeg" alt="Veria Portrait">
+                <div>
+                  <div class="user-name">Veria Rajatunggal</div>
+                  <div class="user-title">IT Teacher</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">
+                "His UI design is incredibly detailed and thoughtful. He truly understands user needs and delivers
+                ready-to-use prototypes."
+              </p>
+              <div class="review-user">
+                <div class="review-initials">AS</div>
+                <div>
+                  <div class="user-name">Asri Maharani</div>
+                  <div class="user-title">Mathematics Teacher</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CERTIFICATES SECTION
+       ══════════════════════════════════════ -->
+  <section id="certificates" class="section"
+    style="background: var(--bg-apple); border-top: 1px solid var(--border-light);">
+    <!-- Backmost Parallax Text Layer -->
+    <div class="parallax-bg-text" id="cert-bg-text" style="top: 20%; left: 15%;">CREDENTIALS</div>
+
+    <div class="container reveal">
+      <div style="text-align: center; margin-bottom: 3.5rem;">
+        <h2 class="section-title"><span class="kicker">Verified</span>Certificates & Awards</h2>
+        <p style="max-width: 600px; margin: 0 auto;">Proof of competence and participation in various professional
+          challenges and training programs.</p>
+      </div>
+
+      <div id="fragment-container" class="fragment-container"
+        style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
+
+        <!-- ════════ CINEMATIC FOREGROUND (Massive, Out of Focus, Fast) ════════ -->
+        <div class="fragment-wrapper"
+          style="top: 10%; left: -8%; z-index: 10; filter: blur(5px); opacity: 0.25; pointer-events: none;"
+          data-speed="45" data-blur="5px" data-orig-op="0.25">
+          <div class="fragment-card" data-scale="1.4" data-rot="25" data-title="Peserta UI/UX Inception"
+            data-date="November 2024"
+            data-desc="Partisipan kompetisi UI/UX yang membangun rancangan fungsional dan estetika.">
+            <img src="image/CertificateInception.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper"
+          style="top: 65%; right: -12%; z-index: 10; filter: blur(6px); opacity: 0.15; pointer-events: none;"
+          data-speed="-50" data-blur="6px" data-orig-op="0.15">
+          <div class="fragment-card" data-scale="1.6" data-rot="-18" data-title="Juara 1 UI/UX Competition"
+            data-date="Agustus 2025" data-desc="Meraih Juara 1 pada Kompetisi UI/UX Tingkat Nasional">
+            <img src="image/CertificateTrilogi.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper"
+          style="top: 85%; left: 35%; z-index: 10; filter: blur(4px); opacity: 0.2; pointer-events: none;"
+          data-speed="35" data-blur="4px" data-orig-op="0.2">
+          <div class="fragment-card" data-scale="1.25" data-rot="12" data-title="Lomba UI/UX UIN"
+            data-date="Oktober 2025" data-desc="Berpartisipasi Dalam Kompetisi UI/UX Tingkat Nasional Di UIN.">
+            <img src="image/CertificateUIN.jpeg" alt="">
+          </div>
+        </div>
+
+        <!-- ════════ PRIMARY CENTERPIECES (Sharp, Clear, Main Interacts) ════════ -->
+        <div class="fragment-wrapper" style="top: 15%; left: 12%; z-index: 5; filter: blur(0px); opacity: 0.95;"
+          data-speed="-5" data-blur="0px" data-orig-op="0.95">
+          <div class="fragment-card" data-scale="0.75" data-rot="-4" data-title="Harapan 1 Web Dev"
+            data-date="Agustus 2025"
+            data-desc="Meraih Harapan 1 pada kompetisi pembuatan front-end tingkat nasional di Universitas Trilogi.">
+            <img src="image/CertificateTrilogi.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper" style="top: 25%; right: 15%; z-index: 5; filter: blur(0px); opacity: 1;"
+          data-speed="7" data-blur="0px" data-orig-op="1">
+          <div class="fragment-card" data-scale="0.8" data-rot="6" data-title="Juara 3 IT Fest Jakarta"
+            data-date="Desember 2025"
+            data-desc="Juara ke-3 pada kompetisi hackathon teknologi IT Fest berkat kecepatan pengembangan yang tinggi.">
+            <img src="image/CertificateItFest.png" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper" style="top: 45%; left: 28%; z-index: 6; filter: blur(0px); opacity: 1;"
+          data-speed="-3" data-blur="0px" data-orig-op="1">
+          <div class="fragment-card" data-scale="0.9" data-rot="-2" data-title="Sertifikasi Resmi IELTS"
+            data-date="Juli 2026"
+            data-desc="Bukti keunggulan komunikasi Bahasa Inggris secara profesional, meraih standar kecakapan kualifikasi global.">
+            <img src="image/CertificateIELTS.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper" style="top: 12%; right: 38%; z-index: 4; filter: blur(0px); opacity: 0.9;"
+          data-speed="12" data-blur="0px" data-orig-op="0.9">
+          <div class="fragment-card" data-scale="0.75" data-rot="12" data-title="Peserta UI/UX Inception"
+            data-date="November 2024"
+            data-desc="Partisipan kompetisi UI/UX yang membangun rancangan desain tingkat atas.">
+            <img src="image/CertificateInception.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper" style="top: 75%; left: 22%; z-index: 4; filter: blur(0px); opacity: 0.9;"
+          data-speed="-8" data-blur="0px" data-orig-op="0.9">
+          <div class="fragment-card" data-scale="0.82" data-rot="-8" data-title="Seminar Nasional UIN"
+            data-date="Oktober 2024"
+            data-desc="Menyelesaikan pelatihan dan seminar edukasi inovasi secara langsung di instansi UIN Jakarta.">
+            <img src="image/CertificateUIN.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper" style="top: 60%; right: 28%; z-index: 5; filter: blur(0px); opacity: 0.95;"
+          data-speed="6" data-blur="0px" data-orig-op="0.95">
+          <div class="fragment-card" data-scale="0.85" data-rot="4" data-title="Sertifikat Kreativitas Yogya"
+            data-date="Februari 2025"
+            data-desc="Penghargaan khusus untuk pendekatan super-kreatif dalam rancangan fungsional UI.">
+            <img src="image/CertificateYogya.jpeg" alt="">
+          </div>
+        </div>
+
+        <!-- ════════ MID-BACK FILLERS (Soft Focus, Denser Cloud) ════════ -->
+        <div class="fragment-wrapper" style="top: 50%; left: -2%; z-index: 3; filter: blur(1.5px); opacity: 0.55;"
+          data-speed="18" data-blur="1.5px" data-orig-op="0.55">
+          <div class="fragment-card" data-scale="0.5" data-rot="22" data-title="Pelatihan UI/UX Dasar"
+            data-date="April 2024" data-desc="Pengenalan terhadap prinsip dasar User Interface dan User Experience.">
+            <img src="image/CertificateTrilogi.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper" style="top: 5%; right: 5%; z-index: 3; filter: blur(1px); opacity: 0.65;"
+          data-speed="-14" data-blur="1px" data-orig-op="0.65">
+          <div class="fragment-card" data-scale="0.45" data-rot="-18" data-title="Web Development Bootcamp"
+            data-date="Mei 2024" data-desc="Pelatihan intensif pengembangan aplikasi web berbasis HTML, CSS, JS.">
+            <img src="image/CertificateUIN.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper" style="top: -2%; left: 45%; z-index: 2; filter: blur(1.5px); opacity: 0.5;"
+          data-speed="-22" data-blur="1.5px" data-orig-op="0.5">
+          <div class="fragment-card" data-scale="0.4" data-rot="8" data-title="Seminar Keamanan Cyber"
+            data-date="Juni 2024"
+            data-desc="Edukasi dasar terkait keamanan jaringan dan perlindungan data privasi individu.">
+            <img src="image/CertificateInception.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper" style="top: 85%; right: 40%; z-index: 3; filter: blur(1px); opacity: 0.45;"
+          data-speed="20" data-blur="1px" data-orig-op="0.45">
+          <div class="fragment-card" data-scale="0.55" data-rot="-28" data-title="Workshop Desain Interaksi"
+            data-date="Juli 2024" data-desc="Penerapan animasi dan transisi mikro pada prototipe interaktif UI.">
+            <img src="image/CertificateYogya.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper" style="top: 90%; left: 8%; z-index: 2; filter: blur(2px); opacity: 0.4;"
+          data-speed="-15" data-blur="2px" data-orig-op="0.4">
+          <div class="fragment-card" data-scale="0.4" data-rot="15" data-title="Hackathon Siswa Nasional"
+            data-date="Agustus 2024"
+            data-desc="Top 10 peserta pada ajang perlombaan inovasi teknologi informasi tingkat SMK.">
+            <img src="image/CertificateItFest.png" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper" style="top: 45%; right: 2%; z-index: 3; filter: blur(1.5px); opacity: 0.55;"
+          data-speed="14" data-blur="1.5px" data-orig-op="0.55">
+          <div class="fragment-card" data-scale="0.38" data-rot="-40" data-title="Sertifikasi Basis Data"
+            data-date="September 2024"
+            data-desc="Menyelesaikan pelatihan terpadu seputar manajemen basis data relasional.">
+            <img src="image/CertificateIELTS.jpeg" alt="">
+          </div>
+        </div>
+
+        <!-- ════════ DEEP VOID (Tiny, High Blur, Very Slow) ════════ -->
+        <div class="fragment-wrapper" style="top: 2%; left: 22%; z-index: 1; filter: blur(2px); opacity: 0.3;"
+          data-speed="-28" data-blur="2px" data-orig-op="0.3">
+          <div class="fragment-card" data-scale="0.25" data-rot="35" data-title="Pelatihan Git &amp; GitHub"
+            data-date="Januari 2024" data-desc="Mendalami manajemen versi kode kolaboratif.">
+            <img src="image/CertificateTrilogi.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper" style="top: -5%; right: 28%; z-index: 1; filter: blur(2.5px); opacity: 0.25;"
+          data-speed="25" data-blur="2.5px" data-orig-op="0.25">
+          <div class="fragment-card" data-scale="0.2" data-rot="-15" data-title="Kursus Pengaturan VPS"
+            data-date="Februari 2024"
+            data-desc="Pengenalan manajemen dan tuning performa server khusus berbasis Cloud.">
+            <img src="image/CertificateInception.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper" style="top: 60%; left: 55%; z-index: 1; filter: blur(2px); opacity: 0.25;"
+          data-speed="-32" data-blur="2px" data-orig-op="0.25">
+          <div class="fragment-card" data-scale="0.22" data-rot="-20" data-title="Sertifikasi Animasi CSS"
+            data-date="Maret 2024"
+            data-desc="Praktik pembuatan gaya animasi website 60fps yang didukung pemrosesan grafis lanjutan.">
+            <img src="image/CertificateUIN.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper" style="top: 70%; right: 25%; z-index: 1; filter: blur(2.5px); opacity: 0.2;"
+          data-speed="22" data-blur="2.5px" data-orig-op="0.2">
+          <div class="fragment-card" data-scale="0.18" data-rot="10" data-title="Lomba Kreativitas Desain"
+            data-date="Desember 2023"
+            data-desc="Mencetak karya desain visual dan ilustrasi menawan pada tingkat sekolah menengah.">
+            <img src="image/CertificateYogya.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="fragment-wrapper" style="top: 30%; left: 40%; z-index: 1; filter: blur(2px); opacity: 0.25;"
+          data-speed="-25" data-blur="2px" data-orig-op="0.25">
+          <div class="fragment-card" data-scale="0.2" data-rot="45" data-title="Seminarium AI Dasar"
+            data-date="November 2023"
+            data-desc="Pengenalan dasar adaptasi era kecerdasan buatan dan dampaknya pada industri web.">
+            <img src="image/CertificateItFest.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOOTER / CONTACT SECTION
+       ══════════════════════════════════════ -->
+  <footer id="contact" class="contact-footer">
+    <!-- Backmost Parallax Text Layer -->
+    <div class="parallax-bg-text" id="contact-bg-text" style="bottom: 10rem;">CONNECT</div>
+
+    <div class="container reveal">
+      <h2 class="contact-title">Let's build together.</h2>
+      <p class="contact-subtitle">
+        Open for new opportunities, freelance work, or simply a creative chat. Reach out, and I'll get back to you
+        promptly.
+      </p>
+
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ghattanilhaq@gmail.com" target="_blank"
+        class="contact-email-btn">
+        ghattanilhaq@gmail.com <i class="bi bi-arrow-up-right-short"></i>
+      </a>
+
+      <div class="footer-base">
+        <p>&copy; <span id="yr"></span> Ghattan Firstian Ilhaq. All Rights Reserved.</p>
+
+        <div class="social-links">
+          <a href="https://github.com/ghattanilhaq-source" class="social-link-btn" target="_blank"
+            aria-label="GitHub"><i class="bi bi-github"></i></a>
+          <a href="https://www.instagram.com/blcqoreo_?igsh=bXp1MWx0eGhlMGxx" class="social-link-btn" target="_blank"
+            aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-link-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Fragment Overlays (Moved to Body to ensure correct fixed positioning) -->
+  <div class="fragment-overlay"></div>
+  <div class="fragment-info-panel" id="fragment-info-panel">
+    <div class="info-date" id="info-date"></div>
+    <h2 class="info-title" id="info-title"></h2>
+    <p class="info-desc" id="info-desc"></p>
+  </div>
+
+  <!-- GSAP & Lenis Smooth Scrolls -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      // Update year automatically
+      document.getElementById('yr').innerText = new Date().getFullYear();
+
+      // Mobile Menu functionality
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('is-open');
+          menuBtn.querySelector('i').classList.toggle('bi-list');
+          menuBtn.querySelector('i').classList.toggle('bi-x');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.remove('is-open');
+            menuBtn.querySelector('i').classList.add('bi-list');
+            menuBtn.querySelector('i').classList.remove('bi-x');
+          });
+        });
+      }
+
+      /* ═══════════════════════════════════════
+         REDUCE MOTION TOGGLE
+         ═══════════════════════════════════════ */
+      const rmBtn = document.getElementById('reduceMotionBtn');
+      const prefersRM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let motionReduced = prefersRM;
+
+      if (prefersRM) document.body.classList.add('reduce-motion');
+
+      rmBtn.addEventListener('click', () => {
+        motionReduced = !motionReduced;
+        document.body.classList.toggle('reduce-motion', motionReduced);
+        rmBtn.innerHTML = motionReduced
+          ? '<i class="bi bi-play-circle"></i>'
+          : '<i class="bi bi-pause-circle"></i>';
+      });
+
+      /* ═══════════════════════════════════════
+         LENIS SMOOTH SCROLLING
+         ═══════════════════════════════════════ */
+      const lenis = new Lenis({
+        duration: 1.5,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: 'vertical',
+        smooth: true,
+        mouseMultiplier: 0.9,
+        smoothTouch: false,
+      });
+
+      function lenisRaf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(lenisRaf);
+      }
+      requestAnimationFrame(lenisRaf);
+
+      // GSAP ScrollTrigger setup
+      gsap.registerPlugin(ScrollTrigger);
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+
+      /* ═══════════════════════════════════════
+         GSAP PARALLAX & REVEAL ANIMATIONS
+         ═══════════════════════════════════════ */
+      // 1. Text reveals
+      document.querySelectorAll('.reveal').forEach((el) => {
+        gsap.to(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 88%",
+            toggleActions: "play none none reverse"
+          },
+          y: 0,
+          opacity: 1,
+          duration: 1.1,
+          ease: "power3.out"
+        });
+      });
+
+      // 2. Skill bar animations
+      document.querySelectorAll('.skill-fill').forEach(bar => {
+        const targetWidth = bar.getAttribute('data-width');
+        gsap.to(bar, {
+          scrollTrigger: {
+            trigger: bar,
+            start: "top 90%",
+            toggleActions: "play none none reverse"
+          },
+          width: targetWidth,
+          duration: 1.5,
+          ease: "power3.out"
+        });
+      });
+
+      // 3. Multi-Layer Parallax Dimensions (Lenis + GSAP Scroll)
+      // Level 1: Background Big Texts Parallax
+      gsap.to('#hero-bg-text', {
+        y: '-10%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+
+      gsap.to('#about-bg-text', {
+        y: '-15%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#about',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+
+      gsap.to('#projects-bg-text', {
+        y: '-15%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#projects',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+
+      gsap.to('#experience-bg-text', {
+        y: '-15%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#experience',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+
+      gsap.to('#contact-bg-text', {
+        y: '-20%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#contact',
+          start: 'top bottom',
+          end: 'bottom bottom',
+          scrub: true
+        }
+      });
+
+      gsap.to('#cert-bg-text', {
+        y: '-12%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#certificates',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+
+      /* ═══════════════════════════════════════
+         MEMORY FRAGMENT LOGIC
+         ═══════════════════════════════════════ */
+      // Parallax Movement for wrappers
+      document.querySelectorAll('.fragment-wrapper').forEach((wrapper) => {
+        let speed = parseFloat(wrapper.dataset.speed) || 0;
+        gsap.to(wrapper, {
+          yPercent: speed,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#certificates',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true
+          }
+        });
+      });
+
+      // Click to Expand logic
+      const fragmentCards = document.querySelectorAll('.fragment-card');
+      const fragOverlay = document.querySelector('.fragment-overlay');
+      const fragInfoPanel = document.getElementById('fragment-info-panel');
+      const infoDate = document.getElementById('info-date');
+      const infoTitle = document.getElementById('info-title');
+      const infoDesc = document.getElementById('info-desc');
+
+      fragmentCards.forEach(frag => {
+        const s = parseFloat(frag.dataset.scale) || 1;
+        const r = parseFloat(frag.dataset.rot) || 0;
+        gsap.set(frag, { scale: s, rotation: r });
+
+        frag.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const wrapper = frag.closest('.fragment-wrapper');
+
+          if (frag.classList.contains('is-focus')) {
+            closeFragments();
+            return;
+          }
+
+          closeFragments();
+
+          const rect = frag.getBoundingClientRect();
+          const currentCenterX = rect.left + rect.width / 2;
+          const currentCenterY = rect.top + rect.height / 2;
+
+          const targetX = window.innerWidth / 2;
+          // Offset Y higher so the info panel is fully visible and not blocked
+          const targetY = (window.innerHeight / 2) - 140;
+
+          const currentX = gsap.getProperty(frag, "x") || 0;
+          const currentY = gsap.getProperty(frag, "y") || 0;
+
+          // Elevate stacking context
+          wrapper.setAttribute('data-orig-z', wrapper.style.zIndex || 1);
+          wrapper.style.zIndex = 101;
+
+          // Disable container mask & overflow to prevent clipping of focused certificate
+          const container = document.getElementById('fragment-container');
+          if (container) {
+            container.classList.add('no-mask');
+          }
+
+          gsap.to(wrapper, {
+            filter: "blur(0px)",
+            opacity: 1,
+            duration: 0.8
+          });
+
+          frag.classList.add('is-focus');
+          if (fragOverlay) fragOverlay.classList.add('is-active');
+
+          infoDate.textContent = frag.dataset.date || '';
+          infoTitle.textContent = frag.dataset.title || '';
+          infoDesc.textContent = frag.dataset.desc || '';
+          if (fragInfoPanel) fragInfoPanel.classList.add('is-active');
+
+          const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+          document.body.style.overflow = 'hidden';
+          document.body.style.paddingRight = `${scrollbarWidth}px`;
+          lenis.stop();
+
+          gsap.to(frag, {
+            x: currentX + (targetX - currentCenterX),
+            y: currentY + (targetY - currentCenterY),
+            scale: window.innerWidth < 768 ? 0.95 : 1.25,
+            rotation: 0,
+            duration: 0.8,
+            ease: "expo.out"
+          });
+        });
+      });
+
+      const closeFragments = () => {
+        fragmentCards.forEach(f => {
+          if (f.classList.contains('is-focus')) {
+            f.classList.remove('is-focus');
+
+            const wrapper = f.closest('.fragment-wrapper');
+            // Revert stacking context smoothly during shrink animation
+            setTimeout(() => {
+              if (!f.classList.contains('is-focus')) {
+                wrapper.style.zIndex = wrapper.getAttribute('data-orig-z') || 1;
+
+                // Re-enable container mask & overflow when fully shrunken,
+                // if no other certificates are currently focused.
+                if (document.querySelectorAll('.fragment-card.is-focus').length === 0) {
+                  const container = document.getElementById('fragment-container');
+                  if (container) container.classList.remove('no-mask');
+                }
+              }
+            }, 600);
+
+            gsap.to(wrapper, {
+              filter: wrapper.getAttribute('data-blur') ? `blur(${wrapper.getAttribute('data-blur')})` : "blur(0px)",
+              opacity: parseFloat(wrapper.getAttribute('data-orig-op')) || 1,
+              duration: 0.7
+            });
+            // dummy comment to prevent replace breakage:
+            setTimeout(() => {
+              if (false) {
+              }
+            }, 600);
+
+            gsap.to(f, {
+              x: 0,
+              y: 0,
+              scale: parseFloat(f.dataset.scale) || 1,
+              rotation: parseFloat(f.dataset.rot) || 0,
+              duration: 0.7,
+              ease: "expo.out"
+            });
+          }
+        });
+        if (fragOverlay) fragOverlay.classList.remove('is-active');
+        if (fragInfoPanel) fragInfoPanel.classList.remove('is-active');
+
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+        lenis.start();
+      };
+
+      if (fragOverlay) fragOverlay.addEventListener('click', closeFragments);
+
+      // Level 2: Hero Main Card Parallax (Inside Frame shift)
+      const heroFrame = document.getElementById('hero-img-layered');
+      if (heroFrame) {
+        gsap.to(heroFrame, {
+          y: '8%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+          }
+        });
+      }
+
+      // Level 3: Floating UI widgets moving at higher speeds (Creating deep 3D offset)
+      const floatWidget1 = document.getElementById('floating-widget-1');
+      if (floatWidget1) {
+        gsap.to(floatWidget1, {
+          y: '-25%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+          }
+        });
+      }
+
+      const floatWidget2 = document.getElementById('floating-widget-2');
+      if (floatWidget2) {
+        gsap.to(floatWidget2, {
+          y: '-18%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+          }
+        });
+      }
+
+      const aboutStatParallax = document.getElementById('about-stat-parallax');
+      if (aboutStatParallax) {
+        gsap.to(aboutStatParallax, {
+          y: '-30%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#about',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true
+          }
+        });
+      }
+
+      // Level 4: Project Thumbnail Shifts (Interior Window effect)
+      document.querySelectorAll('.project-img-container img').forEach(img => {
+        gsap.fromTo(img,
+          { y: '-8%' },
+          {
+            y: '8%',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: img.closest('.project-card'),
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true
+            }
+          }
+        );
+      });
+
+      /* ═══════════════════════════════════════
+         VERTICAL PROGRESS DOT ACTIVE TRACKING
+         ═══════════════════════════════════════ */
+      const progressItems = document.querySelectorAll('.progress-nav__item');
+      const sectionIds = ['hero', 'about', 'projects', 'experience', 'certificates', 'contact'];
+
+      sectionIds.forEach((id, i) => {
+        const section = document.getElementById(id);
+        if (section) {
+          ScrollTrigger.create({
+            trigger: section,
+            start: "top center",
+            end: "bottom center",
+            onEnter: () => setActiveProgress(i),
+            onEnterBack: () => setActiveProgress(i),
+          });
+        }
+      });
+
+      function setActiveProgress(index) {
+        progressItems.forEach((item, i) => {
+          item.classList.toggle('is-active', i === index);
+        });
+      }
+
+      progressItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const target = document.getElementById(item.dataset.target);
+          if (target) lenis.scrollTo(target);
+        });
+      });
+
+      /* ═══════════════════════════════════════
+         INTERACTIVE MOUSE ACTION (GLOW & CURSOR)
+         ═══════════════════════════════════════ */
+      const cursorDot = document.querySelector('.cursor-dot');
+      const cursorRing = document.querySelector('.cursor-ring');
+      const cursorLabel = document.querySelector('.cursor-label');
+      const mouseGlow = document.getElementById('mouse-glow');
+      const isTouch = window.matchMedia('(pointer: coarse)').matches;
+
+      let mouseX = 0, mouseY = 0;
+      let ringX = 0, ringY = 0;
+
+      if (!isTouch && !motionReduced) {
+        document.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+
+          cursorDot.style.left = mouseX + 'px';
+          cursorDot.style.top = mouseY + 'px';
+          cursorLabel.style.left = mouseX + 'px';
+          cursorLabel.style.top = mouseY + 'px';
+
+          if (mouseGlow) {
+            mouseGlow.style.left = mouseX + 'px';
+            mouseGlow.style.top = mouseY + 'px';
+          }
+        });
+
+        // Loop for weighted follow ring
+        function updateRing() {
+          ringX += (mouseX - ringX) * 0.12;
+          ringY += (mouseY - ringY) * 0.12;
+          cursorRing.style.left = ringX + 'px';
+          cursorRing.style.top = ringY + 'px';
+          requestAnimationFrame(updateRing);
+        }
+        updateRing();
+
+        // Hover styles
+        document.querySelectorAll('a, button, .project-card, .apple-card').forEach(el => {
+          el.addEventListener('mouseenter', () => {
+            cursorDot.classList.add('is-hovering');
+            cursorRing.classList.add('is-hovering');
+          });
+          el.addEventListener('mouseleave', () => {
+            cursorDot.classList.remove('is-hovering');
+            cursorRing.classList.remove('is-hovering');
+          });
+        });
+
+        // Show "explore" label
+        document.querySelectorAll('.parallax-frame-depth, .project-img-container').forEach(el => {
+          el.addEventListener('mouseenter', () => cursorLabel.style.opacity = '1');
+          el.addEventListener('mouseleave', () => cursorLabel.style.opacity = '0');
+        });
+      }
+
+      /* ═══════════════════════════════════════
+         PORTFOLIO PAGE 2 LOGIC (Pagination Form)
+         ═══════════════════════════════════════ */
+      const page2Btn = document.getElementById('page2Btn');
+      const nextPageBtn = document.getElementById('nextPageBtn');
+      const page1Btn = document.getElementById('page1Btn');
+      const page2Items = document.querySelectorAll('.page-2-item');
+      const page1Items = Array.from(document.querySelectorAll('.project-card')).filter(card => !card.classList.contains('page-2-item'));
+
+      function showPage2() {
+        if (!page2Btn) return;
+
+        // Hide Page 1 items
+        page1Items.forEach(card => card.classList.add('is-hidden'));
+
+        // Show Page 2 items
+        page2Items.forEach(card => {
+          card.classList.remove('is-hidden');
+          gsap.set(card, { y: 20, opacity: 0 });
+        });
+
+        // Update pagination buttons state
+        page1Btn.classList.remove('is-active');
+
+        page2Btn.classList.add('is-active');
+        nextPageBtn.style.display = 'none';
+
+        // Refresh view & Scroll to top of section
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+          lenis.scrollTo('#projects');
+
+          page2Items.forEach((card) => {
+            gsap.to(card, { y: 0, opacity: 1, duration: 1.1, ease: "power3.out" });
+          });
+        }, 50);
+      }
+
+      function showPage1() {
+        if (!page1Btn) return;
+
+        // Hide Page 2 items
+        page2Items.forEach(card => card.classList.add('is-hidden'));
+
+        // Show Page 1 items
+        page1Items.forEach(card => {
+          card.classList.remove('is-hidden');
+          gsap.set(card, { y: 20, opacity: 0 });
+        });
+
+        // Update pagination buttons state
+        page2Btn.classList.remove('is-active');
+
+        page1Btn.classList.add('is-active');
+        nextPageBtn.style.display = 'inline-flex';
+
+        // Refresh view & Scroll to top of section
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+          lenis.scrollTo('#projects');
+
+          page1Items.forEach((card) => {
+            gsap.to(card, { y: 0, opacity: 1, duration: 1.1, ease: "power3.out" });
+          });
+        }, 50);
+      }
+
+      if (page2Btn && nextPageBtn) {
+        page2Btn.addEventListener('click', showPage2);
+        nextPageBtn.addEventListener('click', showPage2);
+
+        page1Btn.addEventListener('click', () => {
+          if (!page1Btn.classList.contains('is-active')) {
+            showPage1();
+          }
+        });
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>
